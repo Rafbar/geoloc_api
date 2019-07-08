@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 10
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+
+development:
+  <<: *default
+  database: geoloc_development
+
+test:
+  <<: *default
+  database: geoloc_test
+
+production:
+  <<: *default
+  database: geoloc_production
+
+staging:
+  <<: *default
+  database: geoloc_staging
