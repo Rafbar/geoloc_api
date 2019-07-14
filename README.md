@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
 * Configuration
+`database.yml`
+`freegoip.yml`
 
 * Database creation
-
-* Database initialization
+`bundle exec rake db:create db:migrate`
 
 * How to run the test suite
+`bundle exec rspec`
 
-* Services (job queues, cache servers, search engines, etc.)
+* Env requirements
+`postgresql` `redis` 
+
+* Env variables (if you do not change `database.yml/freegeoip.yml`
+`FREEGEOIP_API_KEY` - freegoip (ipstack) api key
+`DB_USERNAME` - database username
+`DB_PASSWORD` - database password
 
 * Deployment instructions
-
-* ...
+`bundle install`
+`rails s -b <binding> -p <port>` - start in dev mode

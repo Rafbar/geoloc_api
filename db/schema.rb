@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_14_030350) do
+ActiveRecord::Schema.define(version: 2019_07_14_035428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 2019_07_14_030350) do
     t.string "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "workflow_state"
     t.index ["ip"], name: "index_geo_locations_on_ip"
     t.index ["key"], name: "index_geo_locations_on_key"
+    t.index ["workflow_state"], name: "index_geo_locations_on_workflow_state"
   end
 
   create_table "users", force: :cascade do |t|
