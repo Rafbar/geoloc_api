@@ -1,0 +1,3 @@
+url: 'http://api.ipstack.com/'
+api_key: <%= ENV['FREEGEOIP_API_KEY'] %>
+timeout: 5
