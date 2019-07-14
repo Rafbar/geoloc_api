@@ -202,7 +202,7 @@ DEPENDENCIES
   workflow
 
 RUBY VERSION
-   ruby 2.2.6p396
+   ruby 2.4.6p354
 
 BUNDLED WITH
-   1.15.4
+   2.0.1

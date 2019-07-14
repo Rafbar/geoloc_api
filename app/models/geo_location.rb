@@ -46,6 +46,7 @@ class GeoLocation < ApplicationRecord
   end
 
   def enqueue_ip_resolver
+    self.enqueue!
     GeolocationResolverWorker.perform_async(self.key)
   end
 
