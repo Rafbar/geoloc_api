@@ -4,6 +4,8 @@ class GeoLocation < ApplicationRecord
   validate :ip_address_valid?
   validate :key_processable?
 
+  # This is a simplified regexp to accomplish url validation,
+  # for prod it should most likely rely on a lib that is updated or moved to own module/class.
   URL_REGEX = /(^$)|(^(http|https)?:?\/?\/?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
 
   workflow do
@@ -29,6 +31,14 @@ class GeoLocation < ApplicationRecord
 
   def cache_key
     'geolocation/' + key.to_s
+  end
+
+  def self.find_by_id_or_key(id_or_key)
+    if id_or_key.is_a?(Numeric) || /^\d+$/ =~ id_or_key || id_or_key.blank?
+      find_by(id: id_or_key)
+    else
+      find_by(key: id_or_key)
+    end
   end
 
   private

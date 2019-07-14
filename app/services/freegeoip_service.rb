@@ -19,10 +19,14 @@ class FreegeoipService
     rescue Faraday::ClientError, Faraday::ParsingError
       return 'failed_permanently'
     end
-    JSON.load(request.body).deep_symbolize_keys
+    stringify_values(JSON.load(request.body).deep_symbolize_keys)
   end
 
   private
+
+  def stringify_values(obj)
+    obj.deep_merge(obj) {|_,_,v| v.to_s}
+  end
 
   def init_client
     @client = Faraday::Connection.new(nil, request: { timeout: @config.timeout })
