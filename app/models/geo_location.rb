@@ -27,6 +27,10 @@ class GeoLocation < ApplicationRecord
     key.gsub('https://', '').gsub('http://','')
   end
 
+  def cache_key
+    'geolocation/' + key.to_s
+  end
+
   private
 
   def key_processable?
