@@ -60,4 +60,16 @@ RSpec.describe GeoLocation, type: :model do
       expect(GeoLocation.new(key: stripped_key).stripped_key).to eq(stripped_key)
     end
   end
+
+  describe "#enqueue_ip_resolver" do
+    before do
+      Sidekiq::Testing.fake!
+      GeolocationResolverWorker.clear
+    end
+
+    it "enqueues ip resolver on create" do
+      GeoLocation.create(key: 'www.google.es')
+      expect(GeolocationResolverWorker.jobs.size).to eq(1)
+    end
+  end
 end

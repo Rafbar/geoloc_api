@@ -25,6 +25,10 @@ class GeoLocation < ApplicationRecord
     state :failed_permanently
   end
 
+  scope :delayed, -> { where(workflow_state: 'delayed') }
+
+  after_create :enqueue_ip_resolver
+
   def stripped_key
     key.gsub('https://', '').gsub('http://','')
   end
@@ -39,6 +43,10 @@ class GeoLocation < ApplicationRecord
     else
       find_by(key: id_or_key)
     end
+  end
+
+  def enqueue_ip_resolver
+    GeolocationResolverWorker.perform_async(self.key)
   end
 
   private
