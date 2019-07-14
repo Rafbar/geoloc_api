@@ -14,7 +14,7 @@ class FreegeoipService
   def process
     begin
       request = @client.get(build_url)
-    rescue Faraday::TimeoutError, Faraday::ConnectionFailed, Faraday::RetriableResponse
+    rescue Faraday::TimeoutError, Faraday::ConnectionFailed
       return 'failed_retriable'
     rescue Faraday::ClientError, Faraday::ParsingError
       return 'failed_permanently'
