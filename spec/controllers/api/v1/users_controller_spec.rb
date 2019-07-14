@@ -4,7 +4,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   render_views
   let(:user) { create(:user) }
   let(:user_2) { create(:user, username: 'user2name') }
-  let(:valid_token) { JwtHelper.encode({user_id: user.id}) }
+  let(:valid_token) { JwtToken.encode({user_id: user.id}) }
   let(:invalid_token) { 'invalidtokentest' }
 
   describe 'valid token request' do

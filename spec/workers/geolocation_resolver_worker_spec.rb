@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe GeolocationResolverWorker, type: :worker do
   describe "#perform" do
-    let(:geolocation) { GeoLocation.create(key: 'www.google.pl', workflow_state: 'enqueued') }
+    let(:geolocation) { GeoLocation.create(key: 'www.google.pl') }
     let(:response_success) { {ip: '192.168.0.1'} }
     let(:response_failed_retriable) { 'failed_retriable' }
     let(:response_failed_permanently) { 'failed_permanently' }

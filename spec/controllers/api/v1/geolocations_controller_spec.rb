@@ -5,7 +5,7 @@ RSpec.describe Api::V1::GeolocationsController, type: :controller do
   let(:user) { create(:user) }
   let!(:geoloc_1) { create(:geo_location) }
   let!(:geoloc_2) { create(:geo_location, key: '192.168.0.2') }
-  let(:valid_token) { JwtHelper.encode({user_id: user.id}) }
+  let(:valid_token) { JwtToken.encode({user_id: user.id}) }
   let(:invalid_token) { 'invalidtokentest' }
 
   describe 'valid token request' do

@@ -21,7 +21,8 @@
 
 * Deployment instructions
 `bundle install`
-`rails s -b <binding> -p <port>` - start in dev mode
+`bundle exec rails s -b <binding> -p <port>` - start rails in dev mode
+`bundle exec sidekiq`
 
 * Test task caveats
   * JWT token is not production ready since it's based on incremental id and secret only (basically knowing the secret would let one login to all users)
