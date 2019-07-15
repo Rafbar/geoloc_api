@@ -3,7 +3,7 @@ class GeolocationResolverWorker
 
   def perform(key)
     @geoloc = GeoLocation.find_by_key(key)
-    response = FreegeoipService.new(key).process
+    response = FreegeoipService.new(@geoloc.stripped_key).process
   
     case response
     when 'failed_retriable'
